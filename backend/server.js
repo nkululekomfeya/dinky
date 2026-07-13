@@ -25,7 +25,7 @@ app.use(cors({
 }))
 app.use(express.json());
 
-app.use('/api/gauges', gaugesRoutes);
+app.use('/api/gauges', gaugeRoutes);
 
 
 

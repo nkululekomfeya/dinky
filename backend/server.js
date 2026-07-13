@@ -1,18 +1,102 @@
-const express = require("express");
-const cors = require("cors");
-require("dotenv").config();
+import dotenv from 'dotenv';
+dotenv.config();
+import express from 'express';
+import cors from 'cors';
+import gaugeRoutes from './routes/gaugeRoutes.js';
+
+
+
+
 
 const app = express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-app.use(cors());
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false }
+});
+
+app.use(cors({
+    origin: '*'
+}))
 app.use(express.json());
 
-app.get("/", (req, res) => {
-    res.json({ message: "Backend running" });
+app.use('/api/gauges', gaugesRoutes);
+
+
+
+/* -------------------------
+   CREATE GAUGE
+-------------------------- */
+
+app.post('/api/gauges', async (req, res) => {
+    try {
+        // 1️⃣ Destructure body first
+        const {
+            gauge_code,
+            description,
+            gauge_type,
+            verification_type,
+            status,
+            base_location,
+            current_location,
+            last_calibration_date,
+            calibration_frequency_months
+        } = req.body;
+
+        // 2️⃣ Default current location to base if empty
+        const actualCurrentLocation = current_location || base_location;
+
+        // 3️⃣ Calculate next calibration date
+        const lastDate = new Date(last_calibration_date);
+        const nextCalibration = new Date(lastDate);
+        nextCalibration.setMonth(
+            lastDate.getMonth() + Number(calibration_frequency_months)
+        );
+
+        // 4️⃣ Insert into DB
+        const result = await pool.query(
+            `
+            INSERT INTO gauges (
+                gauge_code,
+                description,
+                gauge_type,
+                verification_type,
+                status,
+                base_location,
+                current_location,
+                last_calibration_date,
+                calibration_frequency_months,
+                next_calibration_date
+            )
+            VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)
+            RETURNING *
+            `,
+            [
+                gauge_code,
+                description,
+                gauge_type,
+                verification_type,
+                status,
+                base_location,
+                actualCurrentLocation,
+                last_calibration_date,
+                calibration_frequency_months,
+                nextCalibration
+            ]
+        );
+
+        res.status(201).json(result.rows[0]);
+    } catch (err) {
+        console.error('Error inserting gauge:', err);
+        res.status(400).json({ error: err.message });
+    }
 });
+
 
 const PORT = process.env.PORT || 10000;
 
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on port ${PORT}`);
-});
+});                                     

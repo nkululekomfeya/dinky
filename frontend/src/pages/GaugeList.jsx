@@ -29,9 +29,7 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import LoginIcon from '@mui/icons-material/Login';
 import SearchIcon from '@mui/icons-material/Search';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
-
-import AppHeader from '../../components/AppHeader';
-import CheckOutDialog from '../../components/CheckOutDialog';
+import CheckOutDialog from '../components/CheckOutDialog';
 
 const pulseRed = keyframes`
   0%   { background-color: rgba(220, 53, 69, 0.05); }
@@ -77,7 +75,7 @@ export default function GaugeList() {
 
     return (
         <Box sx={{ minHeight: '100vh', bgcolor: '#f4f6f9', pb: 6 }}>
-            <AppHeader title="Gauge Management" />
+            
 
             {/* PAGE TITLE STRIP */}
             <Box sx={{ bgcolor: '#fff', borderBottom: '1px solid #e4e8f0', py: 2, px: { xs: 2, md: 4 } }}>

@@ -3,6 +3,8 @@ dotenv.config();
 import express from 'express';
 import cors from 'cors';
 import gaugeRoutes from './routes/gauges.routes.js';
+import { Pool } from 'pg';
+import path from 'path';
 import { fileURLToPath } from 'url';
 
 

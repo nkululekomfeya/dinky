@@ -17,7 +17,7 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
 
-import AppHeader from '../../components/AppHeader';
+
 
 export default function AddGauge() {
     const navigate = useNavigate();
@@ -95,7 +95,7 @@ export default function AddGauge() {
 
     return (
         <>
-            <AppHeader title="Add Gauge" />
+            
 
             <Container maxWidth="md" sx={{ mt: 4 }}>
                 <Paper elevation={3} sx={{ p: 4 }}>

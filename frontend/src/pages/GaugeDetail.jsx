@@ -1,13 +1,13 @@
 ﻿import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import CalibrationDialog from '../../components/CalibrationDialog';
+import CalibrationDialog from '../components/CalibrationDialog';
 import QRCode from "react-qr-code";
 import { keyframes } from '@mui/system';
-import CheckOutDialog from '../../components/CheckOutDialog';
-import EditDialog from '../../components/EditDialog';
-import AppHeader from '../../components/AppHeader';
-import CalibrationStepsDialog from '../../components/CalibrationStepsDialog';
+import CheckOutDialog from '../components/CheckOutDialog';
+import EditDialog from '../components/EditDialog';
+
+
 import {
     Box,
     Button,

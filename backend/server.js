@@ -3,6 +3,7 @@ dotenv.config();
 import express from 'express';
 import cors from 'cors';
 import gaugeRoutes from './routes/gauges.routes.js';
+import movementsRoutes from './routes/movements.routes.js';
 import { Pool } from 'pg';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -26,7 +27,7 @@ app.use(cors({
 app.use(express.json());
 
 app.use('/api/gauges', gaugeRoutes);
-
+app.use('/api/movements', movementsRoutes);
 
 
 /* -------------------------

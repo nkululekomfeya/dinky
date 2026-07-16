@@ -419,11 +419,7 @@ export default function GaugeDetail() {
                 gauge={gauge}
                 onUpdated={refreshGauge}
             />
-            <CalibrationStepsDialog
-                open={stepsOpen}
-                onClose={() => setStepsOpen(false)}
-                gaugeId={gauge.id}
-            />
+
         </Box>
     );
 }

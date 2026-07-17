@@ -12,7 +12,7 @@ function App() {
       <>
           <AppHeader /> {/*  Inside the BrowserRouter */}
           <Routes>
-              <Route path="/" element={<Home />} />;
+              <Route path="/" element={<GaugeList />} />;
               <Route path="/gauges/new" element={<AddGauge />} />;
               <Route path="/gauges/:id" element={<GaugeDetail />} />;
               <Route path="/gauges" element={<GaugeList />} />

@@ -100,6 +100,26 @@ app.post('/api/gauges', async (req, res) => {
     }
 });
 
+app.delete('/api/gauges/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const result = await pool.query(
+            'DELETE FROM gauges WHERE id = $1 RETURNING id',
+            [id]
+        );
+
+        if (result.rowCount === 0) {
+            return res.status(404).json({ error: 'Gauge not found' });
+        }
+
+        res.json({ deleted: true, id });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Failed to delete gauge' });
+    }
+});
+
 
 const PORT = process.env.PORT || 10000;
 

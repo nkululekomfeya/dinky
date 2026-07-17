@@ -96,7 +96,7 @@ export default async function generateInternalCalibrationPDF({ gauge, calibratio
             doc.pipe(writeStream);
 
             // ---------- COMPANY LOGO ----------
-            const logoPath = path.resolve('uploads/Selago.png'); 
+            const logoPath = path.resolve('uploads/dinkylogo.png'); 
             
             if (fs.existsSync(logoPath)) {
                 doc.image(logoPath, 50, 45, { width: 120 });

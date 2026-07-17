@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
 import cors from 'cors';
+import cloudinary from './config/cloudinary.js';
 import gaugeRoutes from './routes/gauges.routes.js';
 import movementsRoutes from './routes/movements.routes.js';
 import { Pool } from 'pg';
@@ -28,7 +29,7 @@ app.use(express.json());
 
 app.use('/api/gauges', gaugeRoutes);
 app.use('/api/movements', movementsRoutes);
-
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 /* -------------------------
    CREATE GAUGE

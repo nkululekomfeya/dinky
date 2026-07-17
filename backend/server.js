@@ -5,6 +5,7 @@ import cors from 'cors';
 import cloudinary from './config/cloudinary.js';
 import gaugeRoutes from './routes/gauges.routes.js';
 import movementsRoutes from './routes/movements.routes.js';
+import calibrationsRoutes from './routes/calibrations.routes.js';
 import { Pool } from 'pg';
 import path from 'path';
 import { fileURLToPath } from 'url';

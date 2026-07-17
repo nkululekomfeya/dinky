@@ -31,7 +31,7 @@ app.use(express.json());
 app.use('/api/gauges', gaugeRoutes);
 app.use('/api/movements', movementsRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
+app.use('/api/calibrations', calibrationsRoutes);
 /* -------------------------
    CREATE GAUGE
 -------------------------- */
